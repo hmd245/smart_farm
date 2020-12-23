@@ -1,0 +1,151 @@
+    body {}
+    
+    .clear-fix {
+        clear: both;
+    }
+
+    header .header-icon {
+        width: 150px;
+        height: 150px;
+        float: left;
+    }
+    
+    header h2 {
+        float: left;
+        padding: 40px 15px;
+    }
+
+    .nav-item {
+        background: #252525;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    
+    .nav-item .nav-depart {
+        float: left;
+    }
+    .nav-item .nav-depart:hover {
+        background: #e7ab3c;
+    }
+    
+    .nav-item i {
+        font-size: 23px;
+        color: #fff;
+        margin: 20px 30px;
+        
+    }
+    
+    .nav-item .nav-menu {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        position: relative;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .nav-item .nav-menu li {
+        list-style: none;
+        display: inline-block;
+        position: relative;
+        width: 200px;
+    }
+    
+    .nav-item .active {
+        background: #e7ab3c;
+        pointer-events: none;
+    }
+    
+    .nav-item .nav-menu li a {
+        font-weight: 700;
+        display: block;
+        color: #ffffff;
+        text-transform: uppercase;
+        padding: 25px;
+        font-size: 14px;
+        text-align: center;
+        border-left: 1px solid #999;
+        -webkit-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    
+    .nav-item .nav-menu li:hover>a {
+        background: #e7ab3c;
+        text-decoration: none;
+    }
+    
+    .content {
+        margin: 40px 0 ;
+        padding: 20px 40px;
+        border: 1px solid #999;
+    }
+    .content .intro {
+        margin-bottom: 20px;
+    }
+    .content .info {
+        text-align: center;
+        width: calc(33% - 10px);
+        padding: 30px 20px;
+        border: 1px solid #999;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+    .content .info span {
+        font-size: 20px;
+    }
+    .content .info i {
+        font-size: 20px; 
+        margin-right: 10px;
+    }
+    .content .filterTable .infoAvg {
+        text-align: center;
+        width: calc(33% - 10px);
+        padding: 15px;
+        margin-left: 5px;
+        margin-right: 5px;
+        border: 1px solid #999;
+    }
+    .content .infoAvg span {
+        font-size: 12px;
+    }
+    .content .infoAvg i {
+        font-size: 14px; 
+        margin-right: 10px;
+    }
+    .content .info i.fa-temperature-low {
+        color: red;
+    }
+    .content .info i.fa-tint {
+        color: rgb(0, 153, 255);
+    }
+    .content #quickForm {
+        margin-bottom: 40px;
+        padding: 30px 50px;
+        border: 1px solid #3b3b3b;
+    }
+    
+    .content .note {
+        float: right;
+    }
+    /* .content .filterBtn {
+        margin-bottom: 30px;
+    } */
+    .content table th,td {
+        text-align: center;
+    }
+    .content #h3Detail {
+        float: left;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    .content .btn-excel {
+        float: right;
+    }
+    #chart {
+        margin-top: 50px;
+    }
+    .jqplot-highlighter-tooltip {
+        font-size: 12px;
+    }
