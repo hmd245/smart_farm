@@ -1,8 +1,10 @@
 <?php 
 
 define("serverName", "localhost");
-define("userName", "hmdphpmyadmin");
-define("password", "hmd245");
+// define("userName", "hmdphpmyadmin");
+// define("password", "hmd245");
+define("userName", "root");
+define("password", "");
 define("dbName", "cambien");
 define("TABLE", " thoitiet "); // need space between 'device'
 

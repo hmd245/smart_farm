@@ -53,9 +53,10 @@
       <div class="content">
         <h2>Thông tin cảm biến</h2>
         <div class="row">
-          <div class="info col-sm-4"><i class="fas fa-temperature-low"></i><span>NHIỆT ĐỘ KHÔNG KHÍ : 25°C</span></div>
-          <div class="info col-sm-4"><i class="fas fa-tint"></i><span>ĐỘ ẨM KHÔNG KHÍ : 55%</span></div>
-          <div class="info col-sm-4"><i class="fas fa-tint"></i><span>ĐỘ ẨM ĐẤT : 30%</span></div>
+          <div class="info col-sm-4"><i class="fas fa-temperature-low"></i><span class="tempInfo"></span></div>
+          <div class="info col-sm-4"><i class="fas fa-tint"></i><span class="airInfo"></span></div>
+          <div class="info col-sm-4"><i class="fas fa-tint"></i><span class="landInfo"></span></div>
+
         </div>
         <div id="chart"></div>
       </div>
@@ -64,3 +65,4 @@
 </body>
 
 </html>
+
