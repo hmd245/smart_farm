@@ -1,15 +1,13 @@
 #include <SoftwareSerial.h>
 SoftwareSerial loraSerial(2,3); // UART Rx-Tx
 
+#define RELAY 4
 #include <DHT.h>
 const int DHTPIN = 6;
 const int DHTTYPE = DHT11;
-int ledPin = 10;
+int ledPin = 13;
 
 DHT dht(DHTPIN, DHTTYPE);
-
-float Tbd = 0;
-float Hbd = 0;
 
 void setup()
 {
@@ -18,6 +16,7 @@ void setup()
   loraSerial.begin(9600); 
   dht.begin();
   pinMode(A0, INPUT);
+  pinMode(RELAY, OUTPUT);
   Serial.println("lora hudimity sender: ");
 }
 
@@ -28,24 +27,22 @@ void loop()
 
   int mois = analogRead(A0);
 
-  float s = (map(mois, 0, 1023, 100, 0)); // chuyen do am dat sang %
+  float s = (map(mois, 0, 1023, 100, 0)); // change analog to %
 
   String msg="";
 
   if(mois > 1023)
   {
+    // test connect sensor soil
     msg = "Not in the Soil or DISCONNECTED";
   }
 
-  Serial.readString();      // đọc các ký tự từ bộ đệm nối tiếp vào một chuỗi ??
+  Serial.readString();      //  read characters from serial buffer into a string ??
     String temp = String(t);
     String humi = String(h);
     String soil = String(s);
     String data = String(temp +","+ humi +","+ soil);
-    Serial.println(data);   // test tren monitor cua Aduino
-
-    // gửi thông tin đến lora gateway
-      loraSerial.print(data);
+    Serial.println(data);   // test data on Aduino
 
       if(mois <= 1023 && mois >= 600) 
         {   
@@ -61,15 +58,24 @@ void loop()
         }                                          
     Serial.println(msg);
 
-    // nhan chuoi tra ve tu Ras_Pi
-      if(loraSerial.available() > 0)            // kiểm tra data tới Uart mềm không, trả về số byte nhận được
+    // send data to lora gateway
+      loraSerial.print(data);
+
+    // receive string from Ras_Pi
+      if(loraSerial.available() > 0)            // Check data to soft Uart ?, return byte received
         {
-          String str = loraSerial.readString(); // Đọc dữ liệu chuỗi ký tự
+          String str = loraSerial.readString(); // read string data 
           Serial.print("Received: ");
           Serial.println(str);
           if(str[1] == "N")
           {
             digitalWrite(ledPin,HIGH);
+            // use relay turn on the led
+          if(t > 25)
+            {
+              digitalWrite(RELAY, LOW); turn the relay ON
+            }
+            
           }
           if(str[1] == "F")
           {
@@ -80,6 +86,8 @@ void loop()
 }
 //25/12/2020
 ////Nhiet do chenh 2°C moi gui
+  // float Tbd = 0;
+  // float Hbd = 0;
   // int dem = 0;
   // float Tht = t;
   // if(Tht - Tbd > 2 || Tbd - Tht > 2)
@@ -115,5 +123,8 @@ void loop()
   //     loraSerial.print(data);
   //     //delay(10000);
   //    }
+
+  // Serial.readString();      //  đọc các ký tự từ bộ đệm nối tiếp vào một chuỗi ??
+  // loraSerial.available() > 0  // kiểm tra data tới Uart mềm không, trả về số byte nhận được
 
     
