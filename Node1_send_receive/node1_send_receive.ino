@@ -1,28 +1,39 @@
-#include <SoftwareSerial.h>
-SoftwareSerial loraSerial(2,3); // UART Rx-Tx
-
-#define RELAY 4
 #include <DHT.h>
-const int DHTPIN = 6;
+#include <SoftwareSerial.h>
+
+#define RELAY1 5
+#define RELAY2 6
+#define RELAY3 7
+#define RELAY4 8
+#define RELAY5 9
+#define RELAY6 10
+
+String arrReceive[4];
+const int DHTPIN = 4;
 const int DHTTYPE = DHT11;
-int ledPin = 13;
 
 DHT dht(DHTPIN, DHTTYPE);
+SoftwareSerial loraSerial(2,3); // UART Rx-Tx
 
 void setup()
 {
-  pinMode(ledPin, OUTPUT);
+  dht.begin();
   Serial.begin(9600);
   loraSerial.begin(9600); 
-  dht.begin();
   pinMode(A0, INPUT);
-  pinMode(RELAY, OUTPUT);
+  pinMode(RELAY1, OUTPUT);
+  pinMode(RELAY2, OUTPUT);
+  pinMode(RELAY3, OUTPUT);
+  pinMode(RELAY4, OUTPUT);
+  pinMode(RELAY5, OUTPUT);
+  pinMode(RELAY6, OUTPUT);
   Serial.println("lora hudimity sender: ");
 }
 
 void loop()
 {
-  float h = dht.readHumidity();    
+  int r=0, j=0;
+  float h = dht.readHumidity();
   float t = dht.readTemperature();
 
   int mois = analogRead(A0);
@@ -31,11 +42,25 @@ void loop()
 
   String msg="";
 
+  // test connect sensor soil
   if(mois > 1023)
   {
-    // test connect sensor soil
     msg = "Not in the Soil or DISCONNECTED";
   }
+  // status soil moisture(humi land)
+  if(mois <= 1023 && mois >= 600) 
+    {   
+      msg= "DRY";
+    }
+  if(mois < 600 && mois >= 370) 
+    {
+      msg="HUMID"; 
+    }
+  if(mois < 370)
+    {  
+      msg= "Very HUMID";
+    }                                          
+    Serial.println(msg);
 
   Serial.readString();      //  read characters from serial buffer into a string ??
     String temp = String(t);
@@ -44,46 +69,87 @@ void loop()
     String data = String(temp +","+ humi +","+ soil);
     Serial.println(data);   // test data on Aduino
 
-      if(mois <= 1023 && mois >= 600) 
-        {   
-          msg= "DRY";
-        }
-      if(mois < 600 && mois >= 370) 
-        {
-          msg="HUMID"; 
-        }
-      if(mois < 370) 
-        {  
-          msg= "Very HUMID";
-        }                                          
-    Serial.println(msg);
-
     // send data to lora gateway
-      loraSerial.print(data);
+    loraSerial.print(data);
 
-    // receive string from Ras_Pi
-      if(loraSerial.available() > 0)            // Check data to soft Uart ?, return byte received
-        {
-          String str = loraSerial.readString(); // read string data 
-          Serial.print("Received: ");
-          Serial.println(str);
-          if(str[1] == "N")
+    // receive string dataRespond from Ras_Pi
+    if(loraSerial.available() > 0)                    // Check data to soft Uart ?, return byte received
+      {
+        String dataReceive = loraSerial.readString(); // Serial read string data
+        Serial.print("Received: ");
+        Serial.println(dataReceive);                  // stringRespond = "ON1,OF34,ON5,"
+
+        for (int i=0; i < dataReceive.length(); i++)
           {
-            digitalWrite(ledPin,HIGH);
-            // use relay turn on the led
-          if(t > 25)
-            {
-              digitalWrite(RELAY, LOW); turn the relay ON
-            }
-            
+            if(dataReceive.charAt(i) == ',') 
+              {
+                arrReceive[j] = dataReceive.substring(r, i);
+                Serial.println(arrReceive[j]);
+                r=(i+1);
+                j++;
+              }
           }
-          if(str[1] == "F")
-          {
-             digitalWrite(ledPin,LOW);
-          }         
+
+        String tempReceive = arrReceive[0];
+        String airReceive = arrReceive[1];
+        String soilReceive = arrReceive[2];
+
+        //  Temp
+        if(tempReceive == "ON1")
+        {
+          digitalWrite(RELAY1,HIGH);
+          Serial.println("congratulations1");
         }
+        if(tempReceive == "ON2")
+        {
+          digitalWrite(RELAY2,HIGH);
+          Serial.println("congratulations2");
+        }
+        if(tempReceive == "OF12")
+        {
+          digitalWrite(RELAY1,LOW);
+          digitalWrite(RELAY2,LOW);
+          Serial.println("congratulations3");
+        }
+
+        // Air
+        if(airReceive == "ON3")
+        {
+          digitalWrite(RELAY3,HIGH);
+          Serial.println("congratulations4");
+        }
+        if(airReceive == "ON4")
+        {
+          digitalWrite(RELAY4,HIGH);
+          Serial.println("congratulations5");
+        }
+        if(airReceive == "OF34")
+        {
+          digitalWrite(RELAY3,LOW);
+          digitalWrite(RELAY4,LOW);
+          Serial.println("congratulations6");
+        }
+        // Soil
+        if(soilReceive == "ON5")
+        {
+          digitalWrite(RELAY5,HIGH);
+          Serial.println("congratulations7");
+        }
+        if(soilReceive == "ON6")
+        {
+          digitalWrite(RELAY6,HIGH);
+          Serial.println("congratulations8");
+        }
+        if(soilReceive == "OF56")
+        {
+          digitalWrite(RELAY5,LOW);
+          digitalWrite(RELAY6,LOW);
+          Serial.println("congratulations9");
+        }
+      }
     delay(10000);
 }
+
 //25/12/2020
 ////Nhiet do chenh 2°C moi gui
   // float Tbd = 0;
