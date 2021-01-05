@@ -6,7 +6,11 @@ git clone Link
 <!-- push code on github -->
 git add * : thêm file mới
 git commit -m " nội dung commit"
-git push origin main
+git push origin main(--force)
+
+<!-- ip tinh -->
+sudo nano /etc/dhcpcd.conf
+sudo reboot
 
 <!-- creat name DB, table -->
 CREATE DATABASE cambien;
