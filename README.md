@@ -8,6 +8,11 @@ git add * : thêm file mới
 git commit -m " nội dung commit"
 git push origin main(--force)
 
+<!--fatal: Unable to create 'D:/Electronic_IT/Đồ án/farm_sensor/.git/index.lock': File exists.-->
+
+xóa index.locktệp trong .git
+rm -f .git/index.lock
+
 <!-- ip tinh -->
 sudo nano /etc/dhcpcd.conf
 sudo reboot
