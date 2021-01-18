@@ -9,8 +9,7 @@ git commit -m " nội dung commit"
 git push origin main(--force)
 
 <!--fatal: Unable to create 'D:/Electronic_IT/Đồ án/farm_sensor/.git/index.lock': File exists.-->
-
-xóa index.locktệp trong .git
+xóa  tệp index.lock trong .git
 rm -f .git/index.lock
 
 <!-- ip tinh -->
