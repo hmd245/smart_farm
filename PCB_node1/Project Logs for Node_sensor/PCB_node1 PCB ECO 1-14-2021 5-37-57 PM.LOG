@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=NetC2_1 Pin=SW1-1
+Removed Pin From Net: NetName=NetC2_1 Pin=SW1-1
+Removed Pin From Net: NetName=5V Pin=SW1-2
+Removed Pin From Net: NetName=5V Pin=SW1-2
+Added Component: Designator=SW1(SW2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Chung_Loai"; Value = "C?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH001959"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "Nút Nh?n 2 Chân 6x6x5MM DIP"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetC2_1 Pin=SW1-1
+Added Pin To Net: NetName=5V Pin=SW1-2
