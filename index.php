@@ -45,7 +45,7 @@
       <div class="nav-item">
         <a href="index.php" class="nav-depart active"><i class="fas fa-home"></i></a>
         <ul class="nav-menu">
-          <li><a href="html/infoTable.html" class="tableTab">Bảng</a></li>
+          <li><a href="html/infoTable.html" class="tableTab">Thông tin chi tiết</a></li>
           <li><a href="html/averageTable.html" class="avgTab">Giá trị trung bình</a></li>
           <li><a href="html/controllTable.html" class="controllTab">Điều khiển</a></li>
         </ul>
