@@ -32,7 +32,7 @@
 //         }
 //     });
 // })
-$(document).on("click", ".filterBtn", function (e) {
+$(document).on("click", ".filterBtn", function(e) {
     e.preventDefault();
     var data = $(this).closest('form').serializeArray();
     $.ajax({
@@ -40,9 +40,11 @@ $(document).on("click", ".filterBtn", function (e) {
         type: "POST",
         dataType: "JSON",
         data: data,
-    }).done(function (response) {
+    }).done(function(response) {
         let i, html;
-        let tempSum = [], airSum = [], landSum = [];
+        let tempSum = [],
+            airSum = [],
+            landSum = [];
         let tempAvg, airAvg, landAvg;
         const reducer = (a, b) => a + b;
         if (response.length == 0) {
@@ -69,9 +71,10 @@ $(document).on("click", ".filterBtn", function (e) {
                 '<td>' + response[i].do_am + '</td>' +
                 '<td>' + response[i].do_am_dat + '</td></tr>';
         }
-        tempAvg = tempSum.reduce(reducer) / tempSum.length;
-        airAvg = airSum.reduce(reducer) / airSum.length;
-        landAvg = landSum.reduce(reducer) / landSum.length;
+        tempAvg = parseFloat(tempSum.reduce(reducer) / tempSum.length).toFixed(2);
+        airAvg = parseFloat(airSum.reduce(reducer) / airSum.length).toFixed(2);
+        landAvg = parseFloat(landSum.reduce(reducer) / landSum.length).toFixed(2);
+
         html += '</tbody></table></div>';
         html += ' <div class="row">' +
             '<div class="infoAvg col-sm-4"><i class="fas fa-temperature-low"></i><span>NHIỆT ĐỘ TB : ' + tempAvg + '°C</span></div>' +
@@ -81,4 +84,3 @@ $(document).on("click", ".filterBtn", function (e) {
         $(".filterTable").html(html);
     })
 })
-

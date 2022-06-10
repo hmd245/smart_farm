@@ -2,10 +2,10 @@
 include 'db.php';
 $conn = ConnectDatabase();
 $arrContent = [];
-if(isset($_POST["startDate"]) && isset($_POST["endDate"])) {
-    $startDate = $_POST["startDate"];
-    $endDate = $_POST["endDate"];
-}
+
+$startDate = !empty($_POST["startDate"]) ? $_POST["startDate"] : '1970-01-01';
+$endDate = !empty($_POST["endDate"]) ? $_POST["endDate"] : date('Y-m-d');
+
 $sql = 'SELECT ngay, nhiet_do, do_am, do_am_dat
         FROM thoitiet 
         WHERE ngay BETWEEN "'.$startDate.'" AND "'.$endDate.'" 
