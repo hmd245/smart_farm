@@ -69,25 +69,25 @@ Xem địa chỉ Id:
     hostname - I
 
 Kết nối Uart Pi-Arduino
-Bước 1 : Disable Login Shell over Serial 
-              (PL2303, Hercules, Serial Monitor - Arduino, 115200 )
-Bước 2 : Enable Serial Port Hardware 
+    Bước 1 : Disable Login Shell over Serial 
+                  (PL2303, Hercules, Serial Monitor - Arduino, 115200 )
+    Bước 2 : Enable Serial Port Hardware 
 
-* Lưu ý : Với Raspberry Pi 2 tới bước này các bạn Reboot là có thể sử dụng được UART trên Pi 2. Với Pi 3 các bạn thực hiện thêm Bước 3.
+    * Lưu ý : Với Raspberry Pi 2 tới bước này các bạn Reboot là có thể sử dụng được UART trên Pi 2. Với Pi 3 các bạn thực hiện thêm Bước 3.
 
-Bước 3 : Disable Bluetooth and Stop Bluetooth Service 
-+ Disable Bluetooth 
-      $ sudo nano /boot/config.txt
-      $ dtoverlay=pi3-disable-bt
-+ Stop Bluetooth Service 
-      $ sudo systemctl disable hciuart
+    Bước 3 : Disable Bluetooth and Stop Bluetooth Service 
+    + Disable Bluetooth 
+          $ sudo nano /boot/config.txt
+          $ dtoverlay=pi3-disable-bt
+    + Stop Bluetooth Service 
+          $ sudo systemctl disable hciuart
 
-* Lưu ý : Nếu muốn Bluetooth hoạt động trở lại thì các bạn chỉ cần thực hiện Bước 3 này , và thay đổi disable = enable trong các câu lệnh ở Bước 3 này. 
+    * Lưu ý : Nếu muốn Bluetooth hoạt động trở lại thì các bạn chỉ cần thực hiện Bước 3 này , và thay đổi disable = enable trong các câu lệnh ở Bước 3 này. 
 
-Bước 4 : Reboot 
-$ sudo reboot
+    Bước 4 : Reboot 
+    $ sudo reboot
 
-Bước 5 : Test giao tiếp UART với Arduino
+    Bước 5 : Test giao tiếp UART với Arduino
 
 
 
