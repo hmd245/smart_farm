@@ -1,23 +1,26 @@
 # farm_sensor
 <!-- clone code from github -->
-git init
-git clone Link
+Clone code from github
+    git init
+    git clone Link
 
 <!-- push code on github -->
-git add * : thêm file mới
-git commit -m " nội dung commit"
-git push origin main(--force)
+Push code on github:
+    git add * : thêm file mới
+    git commit -m " nội dung commit"
+    git push origin main(--force)
 
 <!--fatal: Unable to create 'D:/Electronic_IT/Đồ án/farm_sensor/.git/index.lock': File exists.-->
-xóa  tệp index.lock trong .git
-rm -f .git/index.lock
+<!-- xóa  tệp index.lock trong .git
+rm -f .git/index.lock -->
 
 <!-- set ip tĩnh trên raspi -->
-sudo nano /etc/dhcpcd.conf
-sudo reboot
+Set ip tĩnh trên raspi
+    sudo nano /etc/dhcpcd.conf
+    sudo reboot
 
 <!-- creat name DB, table -->
-CREATE DATABASE cambien;
+<!-- CREATE DATABASE cambien;
 CREATE TABLE thoitiet (
     id INT(32) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
     ngay DATETIME,
@@ -25,44 +28,47 @@ CREATE TABLE thoitiet (
     do_am DECIMAL(10,2),
     do_am_dat DECIMAL(10,2)
     );
-
+ -->
+ 
 21/12/2020: Hoàn thành vẽ biểu đồ
 
 <!-- Cài đặt Nginx, Php, MariaDB-->
-...
-sudo systemctl status mysql.service
+Cài đặt Nginx, Php, MariaDB
 
-sudo mysql -uroot
+    sudo systemctl status mysql.service
 
-MariaDb > CREATE USE 'username'@'localhost' IDENTIFIED BY 'password'
+    sudo mysql -uroot
 
-> grant all privileges on cambien.*to 'username'@'localhost' with grant option;
+    MariaDb > CREATE USE 'username'@'localhost' IDENTIFIED BY 'password'
 
-sudo apt install php7.4-mysqli
+    > grant all privileges on cambien.*to 'username'@'localhost' with grant option;
 
-sudo apt install php7.4-common php7.4-cuse php7.4-intl php7.4-json php7.4-mys
+    sudo apt install php7.4-mysqli
 
-sudo systemctl restart php7.r4-fpm
+    sudo apt install php7.4-common php7.4-cuse php7.4-intl php7.4-json php7.4-mys
 
-php-m
+    sudo systemctl restart php7.r4-fpm
 
-sudo systemctl restart nginx-service
+    php-m
 
-sudo apt install php7.4-xml
+    sudo systemctl restart nginx-service
+
+    sudo apt install php7.4-xml
 
 <!--Truy cập Database trên terminal:-->
+Truy cập Database trên terminal:
     sudo mysql -uroot
     use cambien;
     show tables;
     slelct * from thoitiet;
 
-<!-- Chọn thư mục chứa project:-->
+Chọn thư mục chứa project:
     cd/var/www/smart-farm/R tab
     
-<!-- Xem địa chỉ Id: 
+Xem địa chỉ Id: 
     hostname - I
 
-<!-- Kết nối Uart Pi-Arduino -->
+Kết nối Uart Pi-Arduino
 Bước 1 : Disable Login Shell over Serial 
               (PL2303, Hercules, Serial Monitor - Arduino, 115200 )
 Bước 2 : Enable Serial Port Hardware 
