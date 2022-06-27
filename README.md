@@ -1,6 +1,6 @@
 # farm_sensor
 <!-- clone code from github -->
-Clone code from github
+Clone code from github:
     git init
     git clone Link
 
