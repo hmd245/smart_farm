@@ -1,4 +1,3 @@
-# farm_sensor
 <!-- clone code from github -->
 Clone code from github:
     git init
@@ -9,10 +8,6 @@ Push code on github:
     git add * : thêm file mới
     git commit -m " nội dung commit"
     git push origin main(--force)
-
-<!--fatal: Unable to create 'D:/Electronic_IT/Đồ án/farm_sensor/.git/index.lock': File exists.-->
-<!-- xóa  tệp index.lock trong .git
-rm -f .git/index.lock -->
 
 <!-- set ip tĩnh trên raspi -->
 Set ip tĩnh trên raspi
